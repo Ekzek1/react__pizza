@@ -1,0 +1,49 @@
+.root{
+  position: relative;
+  left: -120px;
+}
+
+.input{
+  border: 1px solid rgba(0, 0, 0,0.1);
+  padding: 12px 20px;
+  width: 400px;
+  border-radius: 10px;
+  font-size: 16px;
+  padding-left: 42px;
+  transition: all 0.15s ease-in-out;
+}
+
+.search{
+  width: 22px;
+  height: 22px;
+  opacity: 0.3;
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  // cursor: pointer;
+}
+
+.close{
+  position: absolute;
+  opacity: 0.3;
+  top: 12px;
+  right: 14px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+
+
+  &:hover{
+    opacity: 0.8;
+  }
+}
+
+.cross{
+  fill:none;
+  stroke:#000;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width:2px;
+}
