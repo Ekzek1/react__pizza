@@ -2,13 +2,17 @@ import React from 'react';
 import cl from './PaginationMy.module.scss';
 
 import { setPage, setPageNext, setPageBack } from '../../redux/slices/filterSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 
-const PaginationMy = ({count}) => {
-  const dispatch = useDispatch();
-  const { page } = useSelector((state) => state.filter);
+type CountProps = {
+  count: number
+}
 
-  const switchPage = (idx) => {
+const PaginationMy: React.FC <CountProps> = ({count}) => {
+  const dispatch = useAppDispatch();
+  const { page } = useAppSelector((state) => state.filter);
+
+  const switchPage = (idx: number) => {
     dispatch(setPage(idx))
   }
 

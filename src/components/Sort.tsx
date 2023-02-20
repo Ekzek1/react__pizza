@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { setSortType } from '../redux/slices/filterSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../redux/hooks';
 
-export const list = [
+type ListItem = {
+  name: string, 
+  sortProperty: string
+}
+
+export const list: ListItem[] = [
   {name: 'популярности (DESC)', sortProperty: 'rating' },
   {name: 'популярности (ASC)', sortProperty: '-rating'},
   {name: 'цене (DESC)', sortProperty: 'price'},
@@ -11,20 +16,20 @@ export const list = [
   {name: 'алфавиту (ASC)', sortProperty: '-title'}
 ];
 
-const Sort = () => {
-  const sortType = useSelector((state) => state.filter.sort);
-  const dispatch = useDispatch();
+const Sort: React.FC = () => {
+  const sortType = useAppSelector((state): ListItem => state.filter.sort);
+  const dispatch = useAppDispatch();
   
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
-  const onClickListItem = (e, obj) => {
+  const onClickListItem = (obj: ListItem) => {
     dispatch(setSortType(obj));
     setOpen(false);
   }
-
+// React.MouseEvent<HTMLElement>
   const close = useEffect (() => {
-    function bodyClick (e) {
-      if(!e.target.closest('.sort')){
+    function bodyClick (e: MouseEvent){
+      if(!(e.target as Element).closest('.sort')){
         setOpen(false);
       }
     }
@@ -58,7 +63,7 @@ const Sort = () => {
         <div className="sort__popup">
           <ul>
             {list.map((obj, i) => 
-              <li onClick={(e) => onClickListItem(e, obj)} className={sortType.sortProperty === obj.name ? 'active' : ''} key={i} >{obj.name}</li>
+              <li onClick={() => onClickListItem(obj)} className={sortType.sortProperty === obj.name ? 'active' : ''} key={i} >{obj.name}</li>
             )}
           </ul>
         </div>

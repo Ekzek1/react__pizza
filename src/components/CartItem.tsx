@@ -1,12 +1,17 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { addItem, decItem, removeItem } from '../redux/slices/cartSlice';
 
-const CartItem = ({id, title, price, imageUrl, size, type}) => {
 
-  const dispatch = useDispatch();
-  const itemId =  useSelector((state) => state.cart.items.find(obj => obj.id === id));
-  const count = itemId ? itemId.count : '';
+type CartItemProps = {
+  id: string, title: string, price: number, imageUrl: string, size: number, type: string, count: number
+}
+
+const CartItem: React.FC <CartItemProps> = ({id, title, price, imageUrl,count, size, type}) => {
+
+  const dispatch = useAppDispatch();
+  const itemId =  useAppSelector((state) => state.cart.items.find((obj: {id: string}) => obj.id === id));
+  // const count: number = itemId ? itemId.count  : '';
 
   return (
     <div className="cart__item">

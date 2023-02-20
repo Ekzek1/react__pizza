@@ -45,6 +45,9 @@ const cartSlice = createSlice({
   }
 });
 
+export const getCartSelector = (state) => state.cart;
+export const getCartItemByIdSelector = (id) => (state) => state.cart.items.find(obj => obj.id === id);
+
 export const { addItem, removeItem, clearItems, decItem} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -1,17 +1,21 @@
 import React from 'react';
-import styles from './NotFoundBlock.module.scss';
+import styles from './Error.module.scss';
 
-const NotFoundBlock = () => {
+type error = {
+  title: string,
+}
+
+const Error: React.FC <error> = ({title}) => {
   return (
     <div className={styles.root}>
       <h1>
         <span>😕</span>
         <br/>
-        Ничего не найдено
+        {title}
       </h1>
       <p className={styles.description}>К сожалени данная страница отсуствует</p>
     </div>
   )
 }
 
-export default NotFoundBlock
+export default Error
